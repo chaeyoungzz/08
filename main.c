@@ -2,52 +2,55 @@
 #include <stdlib.h>
 
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
-int sumf(int a, int b)
+print_image(int a[][5])
 {
-	return a+b;
+	int i, j;
+	int *ptr = &a[0][0];
+	
+	for( i=0 ; i <5 ; i++ )
+	{
+		for( j=0 ; j <5 ; j++ )
+		{
+			printf("%i ", *ptr );
+			ptr = ptr+1;
+		}
+		printf("\n");
+	}
+	printf("\n");
+	
 }
-int subf(int a, int b)
+
+brighten_image(int a[][5])
 {
-	return a-b;
+	int i, j;
+	int *ptr = &a[0][0];
+	
+	for( i=0 ; i <5 ; i++ )
+	{
+		for( j=0 ; j <5 ; j++ )
+		{
+			*ptr += 10;
+			ptr= ptr+1;
+		}
+	}	
 }
-int mulf(int a, int b)
-{
-	return a*b;
-}
-int divf(int a, int b)
-{
-	return a/b;
-}
+
 
 
 
 int main(int argc, char *argv[]) {
-	int x,y;
-	char C;
-	int (*pf)(int,int);
-	
-	printf(" input calculation : ");
-	scanf("%i %s %i", &x, &C, &y);
-	
-	switch(C)
-	{
-		case '+':
-		pf=sumf;
-		break;
-		
-		case '-':
-		pf=subf;
-		break;
-		
-		case '*':
-		pf=mulf;
-		break;
-		
-		case '/':
-		pf=divf;
-		break;
-	}
+	int image[5][5] = {
+	{10, 20, 30, 40, 50},
+	{10, 20, 30, 40, 50},
+	{10, 20, 30, 40, 50},
+	{10, 20, 30, 40, 50},
+	{10, 20, 30, 40, 50}
+    };
+    
+    print_image(image);
+    brighten_image(image);
+    print_image(image);
 
-	printf(" output : %i", pf(x,y));
+
 	return 0;
 }
